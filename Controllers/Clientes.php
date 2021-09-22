@@ -25,7 +25,9 @@
 		}
 
 		public function setCliente(){
-			if($_POST){			
+			if($_POST){	
+				// dep($_POST);
+				// exit;		
 				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['txtNit']) || empty($_POST['txtNombreFiscal']) || empty($_POST['txtDirFiscal']) ){
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
@@ -61,19 +63,20 @@
 																				$strDirFiscal );
 						// }
 					}else{
-						// $option = 2;
-						// $strPassword =  empty($_POST['txtPassword']) ? "" : hash("SHA256",$_POST['txtPassword']);
-						// if($_SESSION['permisosMod']['u']){
-						// 	$request_user = $this->model->updateUsuario($idUsuario,
-						// 												$strIdentificacion, 
-						// 												$strNombre,
-						// 												$strApellido, 
-						// 												$intTelefono, 
-						// 												$strEmail,
-						// 												$strPassword, 
-						// 												$intTipoId, 
-						// 												$intStatus);
-						// }
+						$option = 2;
+					$strPassword =  empty($_POST['txtPassword']) ? "" : hash("SHA256",$_POST['txtPassword']);
+					if($_SESSION['permisosMod']['u']){
+						$request_user = $this->model->updateCliente($idUsuario,
+																	$strIdentificacion, 
+																	$strNombre,
+																	$strApellido, 
+																	$intTelefono, 
+																	$strEmail,
+																	$strPassword, 
+																	$strNit,
+																	$strNomFiscal, 
+																	$strDirFiscal);
+						}
 
 					}
 
@@ -124,7 +127,7 @@
 			// if($_SESSION['permisosMod']['r']){
 				$idusuario = intval($idpersona);
 				if($idusuario > 0){
-					
+
 					$arrData = $this->model->selectCliente($idusuario);
 					if(empty($arrData))
 					{
@@ -135,6 +138,24 @@
 					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 				}
 			// }
+			die();
+		}
+
+		// Metodo para eliminar clientes
+		public function delCliente(){
+			if($_POST){
+				if($_SESSION['permisosMod']['d']){
+					$intIdpersona = intval($_POST['idUsuario']);
+					$requestDelete = $this->model->deleteCliente($intIdpersona);
+					if($requestDelete)
+					{
+						$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el cliente');
+					}else{
+						$arrResponse = array('status' => false, 'msg' => 'Error al eliminar al cliente.');
+					}
+					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+				}
+			}
 			die();
 		}
 
