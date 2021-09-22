@@ -60,5 +60,22 @@
             return $return;
 		}
 
+        public function selectClientes(){
+
+            $sql = "SELECT idpersona,identificacion,nombres,apellidos,telefono,email_user,status 
+                    FROM persona 
+                    WHERE rolid = 5 and status != 0 ";//Este id pertenece al del modulo rol 5 Cliente.
+            $request = $this->select_all($sql);
+            return $request;
+        }
+        public function selectCliente(int $idpersona){
+            $this->intIdUsuario = $idpersona;
+            $sql = "SELECT idpersona,identificacion,nombres,apellidos,telefono,email_user,nit,nombrefiscal,direccionfiscal,status, DATE_FORMAT(datecreated, '%d-%m-%Y') as fechaRegistro 
+                    FROM persona
+                    WHERE idpersona = $this->intIdUsuario and rolid = 5";//el 5 es modulo del rol Cliente.
+            $request = $this->select($sql);
+            return $request;
+        }
+
     }
 ?>
