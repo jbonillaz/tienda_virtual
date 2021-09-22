@@ -48,8 +48,8 @@
 					if($idUsuario == 0){
 
 						$option = 1;
-						$strPassword =  empty($_POST['txtPassword']) ? hash("SHA256",passGenerator()) : hash("SHA256",$_POST['txtPassword']);
-
+						$strPassword =  empty($_POST['txtPassword']) ? passGenerator() : $_POST['txtPassword'];// para tener la contraseña sin encriptar, para enviarsela al cliente.
+						$strPasswordEncript = hash("SHA256",$strPassword);//Enviar la contraseña encriptada a la BD.
 						// if($_SESSION['permisosMod']['w']){
 							$request_user = $this->model->insertCliente($strIdentificacion,
 																				$strNombre, 
@@ -84,6 +84,12 @@
 
 						if($option == 1){
 							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+							$nombreUsuario = $strNombre.' '.$strApellido;
+							$dataUsuario = array('nombreUsuario' => $nombreUsuario,
+												'email' => $strEmail,
+												'password' => $strPassword,
+												'asunto' => 'Bienvenido a tu tienda en línea');
+							sendEmail($dataUsuario,'email_bienvenida');
 						}else{
 							$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
 						}
