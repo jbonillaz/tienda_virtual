@@ -1,7 +1,7 @@
 <?php 
 
-	class UsuariosModel extends Mysql
-	{
+	class UsuariosModel extends Mysql{
+
 		private $intIdUsuario;
 		private $strIdentificacion;
 		private $strNombre;
@@ -16,8 +16,8 @@
 		private $strNomFiscal;
 		private $strDirFiscal;
 
-		public function __construct()
-		{
+		public function __construct(){
+			
 			parent::__construct();
 		}	
 
