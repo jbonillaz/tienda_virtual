@@ -5,7 +5,7 @@
 
 			parent::__construct();
 			session_start();
-			// session_regenerate_id(true);
+			session_regenerate_id(true);//funcion que resetea el id de la sesion, temas de seguridad.
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
@@ -25,9 +25,8 @@
 		}
 
 		public function setCliente(){
-			if($_POST){	
-				// dep($_POST);
-				// exit;		
+			error_reporting(0);
+			if($_POST){		
 				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['txtNit']) || empty($_POST['txtNombreFiscal']) || empty($_POST['txtDirFiscal']) ){
 					
 					$arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
@@ -50,7 +49,7 @@
 						$option = 1;
 						$strPassword =  empty($_POST['txtPassword']) ? passGenerator() : $_POST['txtPassword'];// para tener la contraseña sin encriptar, para enviarsela al cliente.
 						$strPasswordEncript = hash("SHA256",$strPassword);//Enviar la contraseña encriptada a la BD.
-						// if($_SESSION['permisosMod']['w']){
+						if($_SESSION['permisosMod']['w']){
 							$request_user = $this->model->insertCliente($strIdentificacion,
 																				$strNombre, 
 																				$strApellido, 
@@ -61,7 +60,7 @@
 																				$strNit,
 																				$strNomFiscal,
 																				$strDirFiscal );
-						// }
+						}
 					}else{
 						$option = 2;
 					$strPassword =  empty($_POST['txtPassword']) ? "" : hash("SHA256",$_POST['txtPassword']);
@@ -105,7 +104,7 @@
 		}
 		public function getClientes(){
 
-			// if($_SESSION['permisosMod']['r']){
+			if($_SESSION['permisosMod']['r']){
 				$arrData = $this->model->selectClientes();
 				
 				for ($i=0; $i < count($arrData); $i++) {
@@ -125,12 +124,12 @@
 					$arrData[$i]['options'] = '<div class="text-center">'.$btnView.' '.$btnEdit.' '.$btnDelete.'</div>';
 				}
 				echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
-			// }
+			}
 			die();
 		}
 
 		public function getCliente($idpersona){
-			// if($_SESSION['permisosMod']['r']){
+			if($_SESSION['permisosMod']['r']){
 				$idusuario = intval($idpersona);
 				if($idusuario > 0){
 
@@ -143,7 +142,7 @@
 					}
 					echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
 				}
-			// }
+			}
 			die();
 		}
 

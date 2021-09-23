@@ -76,7 +76,6 @@
             $request = $this->select($sql);
             return $request;
         }
-
         // Metodo para actualizar la informacion del cliente
         public function updateCliente(int $idUsuario, string $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, string $nit, string $nomFiscal, string $dirFiscal){
 
@@ -130,7 +129,7 @@
         }
         // Metodo para eliminar clientes
         public function deleteCliente(int $intIdpersona){
-            
+
             $this->intIdUsuario = $intIdpersona;
             $sql = "UPDATE persona SET status = ? WHERE idpersona = $this->intIdUsuario ";
             $arrData = array(0);
