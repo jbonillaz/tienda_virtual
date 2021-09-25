@@ -25,7 +25,7 @@
 	const NOMBRE_REMITENTE = "Outlet Tech";
 	const EMAIL_REMITENTE = "atenciaonalcliente@llanosoftware.com";
 	const NOMBRE_EMPESA = "Outlet Tech";
-	const WEB_EMPRESA = "https://llanosoftware.com";
+	const WEB_EMPRESA = "https://outlettech.com";
 
 
 ?>
