@@ -13,8 +13,7 @@
 			getPermisos(2);
 		}
 
-		public function Usuarios()
-		{
+		public function Usuarios(){
 			if(empty($_SESSION['permisosMod']['r'])){
 				header("Location:".base_url().'/dashboard');
 			}
@@ -90,8 +89,7 @@
 			die();
 		}
 
-		public function getUsuarios()
-		{
+		public function getUsuarios(){
 			if($_SESSION['permisosMod']['r']){
 				$arrData = $this->model->selectUsuarios();
 				for ($i=0; $i < count($arrData); $i++) {
@@ -152,8 +150,7 @@
 			die();
 		}
 
-		public function delUsuario()
-		{
+		public function delUsuario(){
 			if($_POST){
 				if($_SESSION['permisosMod']['d']){
 					$intIdpersona = intval($_POST['idUsuario']);
