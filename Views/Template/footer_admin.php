@@ -1,5 +1,6 @@
     <script>
         const base_url = "<?= base_url(); ?>";
+        const smony = "<?= SMONEY; ?>";
     </script>
     <!-- Essential javascripts for application to work-->
     <script src="<?= media(); ?>/js/jquery-3.3.1.min.js"></script>
@@ -11,6 +12,8 @@
     <script src="<?= media(); ?>/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
      <script type="text/javascript" src="<?= media(); ?>/js/plugins/sweetalert.min.js"></script>
+     <!-- LIbreria tinymce_5.9.2 29 descargada el 28 de septiembre de 2021 -->
+     <script type="text/javascript" src="<?= media(); ?>/js/tinymce/tinymce.min.js"></script>
 
     <!-- Data table plugin-->
     <script type="text/javascript" src="<?= media(); ?>/js/plugins/jquery.dataTables.min.js"></script>

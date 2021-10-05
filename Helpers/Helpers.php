@@ -74,7 +74,7 @@
         $request = $objLogin->sessionLogin($idpersona);
         return $request;
     }
-    // Funcion para giuardar las imagenes
+    // Funcion para guardar las imagenes
     function uploadImage(array $data, string $name){
         $url_temp = $data['tmp_name'];
         $destino    = 'Assets/images/uploads/'.$name;        

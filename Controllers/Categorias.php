@@ -13,6 +13,18 @@
 			getPermisos(6);
 		}
 
+		// Metodo para ingresar una categoria o crear una nueva categoria
+		public function categorias(){
+			if(empty($_SESSION['permisosMod']['r'])){
+				header("Location:".base_url().'/dashboard');
+			}
+			$data['page_tag'] = "Categorias";
+			$data['page_title'] = "CATEGORIAS <small>Tienda Virtual</small>";
+			$data['page_name'] = "CATEGORIAS";
+			$data['page_functions_js'] = "functions_categorias.js";
+            $this->views->getView($this,"categorias",$data);
+		}
+		
         public function setCategoria(){
             // dep($_POST);
             // dep($_FILES);
@@ -83,18 +95,7 @@
 			}
 			die();
 		}
-		// Metodo para ingresar una categoria o crear una nueva categoria
-		public function categorias(){
-			if(empty($_SESSION['permisosMod']['r'])){
-				header("Location:".base_url().'/dashboard');
-			}
-			$data['page_tag'] = "Categorias";
-			$data['page_title'] = "CATEGORIAS <small>Tienda Virtual</small>";
-			$data['page_name'] = "CATEGORIAS";
-			$data['page_functions_js'] = "functions_categorias.js";
-            $this->views->getView($this,"categorias",$data);
-		}
-        
+	
         // Metodo para extraer categorias de la BD al la tabla del sistema.
         public function getCategorias(){
 
@@ -169,6 +170,21 @@
 				}
 			}
 			die();
+		}
+
+		//Metodo que permite la busqueda de categorias en el modal de productos.
+		public function getSelectCategorias(){
+			$htmlOptions = "";
+			$arrData = $this->model->selectCategorias();
+			if(count($arrData) > 0 ){
+				for ($i=0; $i < count($arrData); $i++) { 
+					if($arrData[$i]['status'] == 1 ){
+					$htmlOptions .= '<option value="'.$arrData[$i]['idcategoria'].'">'.$arrData[$i]['nombre'].'</option>';
+					}
+				}
+			}
+			echo $htmlOptions;
+			die();	
 		}
     }
 
