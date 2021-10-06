@@ -11,15 +11,12 @@
 
 		public function home()
 		{
-			// dep($this->getProductosT());
-			// exit;
 			$data['page_tag'] = NOMBRE_EMPESA;
 			$data['page_title'] = NOMBRE_EMPESA;
-			$data['page_name'] = "outlet_tech";
+			$data['page_name'] = "Outlet-Tech";
 			$data['slider'] = $this->getCategoriasT(CAT_SLIDER);
 			$data['banner'] = $this->getCategoriasT(CAT_BANNER);
 			$data['productos'] = $this->getProductosT();
-			// dep($data); exit;
 			$this->views->getView($this,"home",$data);
 		}
 

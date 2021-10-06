@@ -27,8 +27,8 @@
 	const NOMBRE_EMPESA = "Outlet Tech";
 	const WEB_EMPRESA = "https://outlettech.com";
 	//Constante para el Slider de las categorias de la tienda.
-	const CAT_SLIDER = "1,2,3";
-	const CAT_BANNER = "4,5";
+	const CAT_SLIDER = "1,2,6";
+	const CAT_BANNER = "4,5,3";
 
 
 
